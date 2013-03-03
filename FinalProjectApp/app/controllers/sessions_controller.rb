@@ -9,12 +9,18 @@ class SessionsController < ApplicationController
 	end
 
 	def create
-		@user = User.find_by_username(params[:username])
-		if @user.nil?
-			flash[:notice] = "Invalid username"
-		else
-			session["user_id"] = @user.id
-		end
-		redirect_to root_url
-	end
+    	user = User.find_by_username(params[:username])
+		    if user.present?
+		      if user.authenticate(params[:password])
+		        session[:user_id] = user.id
+		        redirect_to root_url
+		        return
+		      end
+		    end
+
+	 	redirect_to login_url, notice: "Invalid Entry. Try Again."
+  	end
 end
+
+
+ 

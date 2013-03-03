@@ -15,12 +15,12 @@
     <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
-  
+ 
   <div class="field">
     <%= f.label :fileName %><br />
     <%= f.text_field :fileName %>
   </div>
- 
+  
   <div class="field">
     <%= f.label :message %><br />
     <%= f.text_field :message %>
@@ -30,6 +30,6 @@
     <%= f.submit %>
   </div>
 
-  <%= f.hidden_field :user_id, :value => session[:user_id] %>
-  
+<%= f.hidden_field :user_id, :value => session[:user_id] %>
+
 <% end %>

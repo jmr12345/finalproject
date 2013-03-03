@@ -6,9 +6,9 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="http://bootswatch.com/united/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="http://bootswatch.com/cosmo/bootstrap.min.css">
   <style type="text/css">
-    body { padding-top: 60px; padding-bottom: 40px; }
+    body { padding-top: 60px; padding-bottom: 40px; background-color: Lavender;}
   </style>
   <link href="http://twitter.github.com/bootstrap/assets/css/bootstrap-responsive.css" rel="stylesheet">
 
@@ -42,6 +42,7 @@
           <ul class="nav pull-right">
 
             <% if session[:user_id] %>
+              <li><%= link_to "My Posts", "/posts" %></li>
               <li><%= link_to "My Profile", user_url(session[:user_id]) %></li>
               <li><%= link_to "Sign Out", logout_url %></li>
             <% else %>
@@ -61,7 +62,9 @@
 
     <hr>
 
-    <footer>
+    <footer> <style type="text/css">
+    footer { text-align: right}
+  </style>
       <p>&copy;2013 Amy Chiu and Jakuelyn Roush.</p>
     </footer>
   </div> <!-- /container -->
