@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
 
 	def destroy
 		reset_session
-		redirect_to_root_url
+		redirect_to root_url	
 	end
 
 	def create
@@ -15,5 +15,6 @@ class SessionsController < ApplicationController
 		else
 			session["user_id"] = @user.id
 		end
+		redirect_to root_url
 	end
 end

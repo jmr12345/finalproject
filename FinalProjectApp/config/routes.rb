@@ -2,8 +2,9 @@ FinalProjectApp::Application.routes.draw do
 
   resources :posts
 
+  get "/" => 'journal#index', :as => :home
 
-  root to: 'sessions#new'
+  root to: 'journal#index'
 
   resources :users
 
