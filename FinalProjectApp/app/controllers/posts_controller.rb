@@ -1,12 +1,10 @@
 class PostsController < ApplicationController
+  
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @posts }
+    if session[:user_id].present?
+      @posts = Post.where("user_id = #{session[:user_id]}")
     end
   end
 

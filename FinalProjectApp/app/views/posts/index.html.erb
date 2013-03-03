@@ -3,24 +3,16 @@
 <table>
   <tr>
     <th>Title</th>
-    <th></th>
     <th>Filename</th>
-    <th></th>
     <th>Message</th>
-    <th></th>
-    <th></th>
-    <th></th>
-    <th></th>
+      
   </tr>
 
 <% @posts.each do |post| %>
   <tr>
     <td><%= post.title %></td>
-    <td><%= post. %></td>
     <td><%= post.fileName %></td>
-    <td><%= post. %></td>
     <td><%= post.message %></td>
-    <td><%= post. %></td>
     <td><%= link_to 'Show', post %></td>
     <td><%= link_to 'Edit', edit_post_path(post) %></td>
     <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
