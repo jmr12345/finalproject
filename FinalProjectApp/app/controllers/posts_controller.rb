@@ -12,6 +12,8 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    @comments = Comment.where(:post_id => params[:id])
+    @comment = Comment.new
 
     respond_to do |format|
       format.html # show.html.erb
@@ -81,6 +83,7 @@ class PostsController < ApplicationController
 
   def view
       user = User.find_by_username(params[:vieweduser])
+      session[:vieweduser] = user.username
       if user.present?
         @viewed_id = user.id
         @curruser_id = session[:user_id]

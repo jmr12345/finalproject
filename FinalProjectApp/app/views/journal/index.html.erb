@@ -5,7 +5,7 @@
     </style>Featured Posts</h1>
     
     <% @randomPost.each do |post| %>
-    	<c style="font-weight:250"><b><%= post.user.username %></b></c>
+        <b><%= link_to "#{post.user.username}", "/#{post.user.username}" %></b>
     	<n style="font-size:10px">on
     	<%= post.created_at.strftime("%d %B %Y at %I:%M%p") %></n>
     	<p></p>

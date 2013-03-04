@@ -11,31 +11,33 @@
     </div>
   <% end %>
 
+  <% if @action == "new" %>
+    <div class="field">
+      <%= f.label :username %>
+      <%= f.text_field :username %>
+    </div>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+    </div>
+  <% end %>
   <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :firstname %><br />
+    <%= f.label :firstname %>
     <%= f.text_field :firstname %>
   </div>
   <div class="field">
-    <%= f.label :lastname %><br />
+    <%= f.label :lastname %>
     <%= f.text_field :lastname %>
   </div>
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :email %>
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :birthday %><br />
+    <%= f.label :birthday %>
     <%= f.date_select :birthday %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Update" %>
   </div>
 <% end %>

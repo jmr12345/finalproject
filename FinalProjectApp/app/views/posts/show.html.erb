@@ -1,21 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Text:</b>
-  <%= @post.text %>
-</p>
+ <n style="font-size:20px"><b><%= @post.created_at.strftime("%B %d, %Y at %I:%M %p") %></b></n>
+        <p></p>
+        <%= @post.text %>
+        <p></p>
+        <% if @post.url.present? %>
+            <%= image_tag("#{@post.url}", :height => '300', :width => '300') %>
+        <% end %><br>
 
-<p>
-  <b>URL:</b>
-  <%= @post.url %>
-</p>
+<%= link_to 'Back', "/#{session[:vieweduser]}" %>
 
-<p>
-  <b>User ID:</b>
-  <%= @post.user_id %>
-</p>
-
-
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<br><hr><hr>
+<%= render 'comments' %>

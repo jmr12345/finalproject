@@ -21,12 +21,12 @@
             <%= image_tag("#{post.url}", :height => '300', :width => '300') %>
         <% end %><br>
 
+        <%= link_to "View Comments (#{post.comments.count})", post %>
+        
         <% if @viewed_id == @curruser_id %>
-            <%= link_to 'View Comments', post %> |
-            <%= link_to 'Edit', edit_post_path(post) %> |
+            
+            | <%= link_to 'Edit', edit_post_path(post) %> |
             <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Any comments on this post will also be permanently deleted.  Select OK to confirm deletion.' } %>
-        <% else %>
-              <%= link_to 'Add Comment', post %>
         <% end %>
         <hr>
         
