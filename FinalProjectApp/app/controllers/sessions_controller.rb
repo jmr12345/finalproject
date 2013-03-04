@@ -13,7 +13,8 @@ class SessionsController < ApplicationController
 		    if user.present?
 		      if user.authenticate(params[:password])
 		        session[:user_id] = user.id
-		        redirect_to root_url
+		        session[:username] = user.username
+		        redirect_to "/#{session[:username]}"
 		        return
 		      end
 		    end

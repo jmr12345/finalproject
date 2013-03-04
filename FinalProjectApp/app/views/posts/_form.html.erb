@@ -9,23 +9,17 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %>  
+  
+  <br><div class="textarea">   
+    <%= f.text_area :text %>
+  </div>
 
   <div class="field">
-    <%= f.label :title %><br />
-    <%= f.text_field :title %>
+    <%= f.label "Add an image (paste url):" %>
+    <%= f.text_field :url %>
   </div>
- 
-  <div class="field">
-    <%= f.label :fileName %><br />
-    <%= f.text_field :fileName %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :message %><br />
-    <%= f.text_field :message %>
-  </div>
-  
+
   <div class="actions">
     <%= f.submit %>
   </div>

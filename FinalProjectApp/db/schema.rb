@@ -13,13 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130302213505) do
 
-  create_table "comments", :force => true do |t|
-    t.integer  "post_id1"
-    t.integer  "post_id2"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "likes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "post_id"
@@ -28,9 +21,8 @@ ActiveRecord::Schema.define(:version => 20130302213505) do
   end
 
   create_table "posts", :force => true do |t|
-    t.string   "title"
-    t.string   "fileName"
-    t.string   "message"
+    t.string   "url"
+    t.string   "text"
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false

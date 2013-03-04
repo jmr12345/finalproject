@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     if session[:user_id].present?
-      @posts = Post.where("user_id = #{session[:user_id]}")
+      @posts = Post.where("user_id = #{session[:user_id]}").order('created_at DESC')
     end
   end
 
@@ -42,7 +42,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to posts_url, notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
@@ -78,4 +78,20 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def view
+      user = User.find_by_username(params[:vieweduser])
+      if user.present?
+        @viewed_id = user.id
+        @curruser_id = session[:user_id]
+        @posts = Post.where(:user_id => @viewed_id)
+        @username = user.username
+        render :index
+      else
+        redirect_to root_url
+      end
+  end
+    
+
+
 end

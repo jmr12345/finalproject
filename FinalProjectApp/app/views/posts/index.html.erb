@@ -1,28 +1,33 @@
 <div class="row">
   <div class="span12">
-    <h1 class="page-header">My Posts</h1>
+    <h1 class="page-header"><style type="text/css">
+        h1 { text-align:center; }
+    </style><%= @username %>'s Posts</h1>
     
-    <style type="text/css">
-        body { text-align:center; }
-    </style>
-    
-    <%= link_to 'New Post', new_post_path %><br>
+    <% if @viewed_id == @curruser_id %> 
+        <%= link_to 'Create New Post', new_post_path %>
+    <% else %>
+        <%= link_to "Subscribe to #{@username}", root_url %>    
+    <% end %>
+    <br><br>
 
     <% @posts.each do |post| %>
-        <c style="font-weight:250"><b><%= post.user.username %></b></c>
-        <n style="font-size:10px">at
-        <%= post.created_at.strftime("%d %B %Y at %I:%M %p") %></n>
+       
+        <n style="font-size:20px"><b><%= post.created_at.strftime("%B %d, %Y at %I:%M %p") %></b></n>
         <p></p>
-        <%= post.message %>
+        <%= post.text %>
         <p></p>
-        <% if post.fileName.present? %>
-            <%= image_tag("#{post.fileName}", :height => '300', :width => '300') %>
+        <% if post.url.present? %>
+            <%= image_tag("#{post.url}", :height => '300', :width => '300') %>
         <% end %><br>
 
-        <%= link_to 'Comments', post %>
-        <%= link_to 'Edit', edit_post_path(post) %>
-        <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Are you sure?' } %>
-
+        <% if @viewed_id == @curruser_id %>
+            <%= link_to 'View Comments', post %> |
+            <%= link_to 'Edit', edit_post_path(post) %> |
+            <%= link_to 'Delete', post, method: :delete, data: { confirm: 'Any comments on this post will also be permanently deleted.  Select OK to confirm deletion.' } %>
+        <% else %>
+              <%= link_to 'Add Comment', post %>
+        <% end %>
         <hr>
         
     <% end %>
@@ -30,4 +35,3 @@
     
   </div>
 </div>
-
