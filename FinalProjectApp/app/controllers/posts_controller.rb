@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
-    @comments = Comment.where(:post_id => params[:id])
+    @comments = Comment.where(:post_id => params[:id]).order("id desc")
     @comment = Comment.new
 
     respond_to do |format|
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to posts_url, notice: 'Post was successfully created.' }
+        format.html { redirect_to "/#{session[:username]}", notice: 'Post was successfully created.' }
         format.json { render json: @post, status: :created, location: @post }
       else
         format.html { render action: "new" }
@@ -87,7 +87,7 @@ class PostsController < ApplicationController
       if user.present?
         @viewed_id = user.id
         @curruser_id = session[:user_id]
-        @posts = Post.where(:user_id => @viewed_id)
+        @posts = Post.where(:user_id => @viewed_id).order("id desc")
         @username = user.username
         render :index
       else

@@ -42,12 +42,17 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    session[:user_id] = @user.id
+    session[:username] = @user.username
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to root_url, notice: 'User was successfully created.' }
+        session[:user_id] = @user.id
+        session[:username] = @user.username
+        format.html { redirect_to "/#{session[:username]}", notice: 'User was successfully created.' }
         format.json { render json: root_url, status: :created, location: @user }
       else
+        @action = "new"
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
@@ -62,7 +67,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to "/#{session[:username]}", notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -82,4 +87,5 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 end
